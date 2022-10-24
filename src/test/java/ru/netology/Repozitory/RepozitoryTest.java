@@ -8,10 +8,10 @@ import ru.netology.Domain.Smartphone;
 
 public class RepozitoryTest {
 
-    Book item1 = new Book(1, 100, "book", "Book1", "Author1");
-    Smartphone item2 = new Smartphone(2, 200, "smartphone", "phone1", "Fabricator1");
-    Smartphone item3 = new Smartphone(3, 500, "smartphone", "phone2", "Fabricator2");
-    Book item4 = new Book(4, 300, "book", "Book2", "Author2");
+    Product item1 = new Book(1, 100, "book", "Book1", "Author1");
+    Product item2 = new Smartphone(2, 200, "smartphone", "phone1", "Fabricator1");
+    Product item3 = new Smartphone(3, 500, "smartphone", "phone2", "Fabricator2");
+    Product item4 = new Book(4, 300, "book", "Book2", "Author2");
 
     @Test
 

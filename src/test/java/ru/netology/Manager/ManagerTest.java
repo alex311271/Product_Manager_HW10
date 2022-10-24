@@ -1,6 +1,7 @@
 package ru.netology.Manager;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import ru.netology.Domain.Book;
@@ -12,45 +13,64 @@ import static org.mockito.Mockito.*;
 
 public class ManagerTest {
 
-    Repozitory repozitory = Mockito.mock(Repozitory.class);
+
+    Repozitory repozitory = new Repozitory();
     Manager manager = new Manager(repozitory);
 
     Product item1 = new Book(11, 150, "book", "Book1", "Author1");
     Product item2 = new Smartphone(5, 500, "smartphone", "Smartphone1", "Fabric1");
     Product item3 = new Book(12, 100, "book", "Book2", "Author2");
-    Product item4 = new Smartphone( 10, 700, "smartphone", "Smartphone3", "Fabricator2");
+    Product item4 = new Smartphone(10, 700, "smartphone", "Smartphone3", "Fabric2");
 
-    @Test
-    public void findAllSmartphone(){
-        Product[] products = {item1, item2, item3, item4};
-        doReturn(products).when(repozitory).findAll();
+    @BeforeEach
+    public void setup(){
 
-        Product[] expected = {item2, item4};
-        Product[] actual = manager.searchBy("smartphone");
-
-        Assertions.assertArrayEquals(expected, actual);
+        manager.add(item1);
+        manager.add(item2);
+        manager.add(item3);
+        manager.add(item4);
     }
 
-    @Test
-    public void  findAllBook(){
-        Product[] products = {item1, item2, item3, item4};
-        doReturn(products).when(repozitory).findAll();
 
-        Product[] expected = {item1, item3};
-        Product[] actual = manager.searchBy("book");
 
-        Assertions.assertArrayEquals(expected, actual);
-    }
+  
 
     @Test
-    public void findAll(){
-        Product[] products = {item1, item2, item3, item4};
-        doReturn(products).when(repozitory).findAll();
+    public void findAll() {
 
         Product[] expected = {item1, item2, item3, item4};
         Product[] actual = manager.findAll();
 
         Assertions.assertArrayEquals(expected, actual);
     }
+
+    @Test
+    public void searchByAllBook(){
+
+        Product[] expected = {item1, item3};
+        Product[] actual = manager.searchBy("book");
+    }
+
+    @Test
+    public void noSearchByBook(){
+
+        Product[] expected = {item3};
+        Product[] actual = manager.searchBy("book8");
+    }
+
+    @Test
+    public void searchByAuthor(){
+
+        Product[] expected = {item1};
+        Product[] actual = manager.searchBy("Author1");
+    }
+
+    @Test
+    public void searchByFabricator(){
+
+        Product[] expected = {item4};
+        Product[] actual = manager.searchBy("Fabric2");
+    }
+
 
 }

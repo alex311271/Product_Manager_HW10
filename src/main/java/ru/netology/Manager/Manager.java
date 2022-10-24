@@ -13,16 +13,14 @@ public class Manager {
         this.repozitory = repozitory;
     }
 
+    public void add(Product product) {
+        repozitory.save(product);
+    }
+
     public Product[] findAll() {
         Product[] all = repozitory.findAll();
         return all;
     }
-
-    public void add(Product product) {
-        repozitory.save((Book) product);
-        repozitory.save((Smartphone) product);
-    }
-
 
     public Product[] searchBy(String text) {
         Product[] result = new Product[0];// тут будем хранить подошедшие запросу продукты
