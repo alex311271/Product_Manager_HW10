@@ -25,13 +25,12 @@ public class Manager {
 
 
     public Product[] searchBy(String text) {
-        Product[] result = new Product[0];// тут будем хранить подошедшие запросу продукты
-        for (Product product: repozitory.findAll()) { // перебираем значения ячеек массива по адресу findAll в Rpozitory
-            if (matches(product, text)) { // если запрос matches true то "добавляем в конец" массива result продукт product
-                Product[] tmp = new Product[result.length + 1]; // создаем временный массив длинно на 1 ячейку больше чем массив result
+        Product[] result = new Product[0];
+        for (Product product: repozitory.findAll()) {
+            if (matches(product, text)) {
+                Product[] tmp = new Product[result.length + 1];
                 for (int i = 0; i < result.length; i++) { //
                     tmp[i] = result[i];
-                    i++;
                 }
                 tmp[result.length] = product;
                 result = tmp;
